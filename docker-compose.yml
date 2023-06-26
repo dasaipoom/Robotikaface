@@ -16,8 +16,8 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
   compreface-admin:
-    restart: always
     image: ${registry}compreface-admin:${ADMIN_VERSION}
+    restart: always
     container_name: "compreface-admin"
     environment:
       - POSTGRES_USER=${postgres_username}
@@ -37,8 +37,8 @@ services:
       - compreface-api
 
   compreface-api:
-    restart: always
     image: ${registry}compreface-api:${API_VERSION}
+    restart: always
     container_name: "compreface-api"
     depends_on:
       - compreface-postgres-db
@@ -55,8 +55,8 @@ services:
       - READ_TIMEOUT=${read_timeout:-60000}
 
   compreface-fe:
-    restart: always
     image: ${registry}compreface-fe:${FE_VERSION}
+    restart: always
     container_name: "compreface-ui"
     ports:
       - "80:80"
@@ -69,11 +69,12 @@ services:
       - PROXY_CONNECT_TIMEOUT=${connection_timeout:-10000}ms
 
   compreface-core:
-    restart: always
     image: ${registry}compreface-core:${CORE_VERSION}
+    restart: always
     container_name: "compreface-core"
     environment:
       - ML_PORT=3000
       - IMG_LENGTH_LIMIT=${max_detect_size}
       - UWSGI_PROCESSES=${uwsgi_processes:-2}
       - UWSGI_THREADS=${uwsgi_threads:-1}
+
