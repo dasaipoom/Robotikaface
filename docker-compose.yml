@@ -59,7 +59,7 @@ services:
     restart: always
     container_name: "compreface-ui"
     ports:
-      - "8000:80"
+      - "8003:80"
     depends_on:
       - compreface-api
       - compreface-admin
@@ -68,8 +68,7 @@ services:
       - PROXY_READ_TIMEOUT=${read_timeout:-60000}ms
       - PROXY_CONNECT_TIMEOUT=${connection_timeout:-10000}ms
       
-    networks:
-      - face_network
+
 
   compreface-core:
     image: ${registry}compreface-core:${CORE_VERSION}
@@ -82,6 +81,4 @@ services:
       - UWSGI_THREADS=${uwsgi_threads:-1}
 
 
-networks:
-  face_network:
-    external: true
+
