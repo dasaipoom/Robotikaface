@@ -67,7 +67,8 @@ services:
       - CLIENT_MAX_BODY_SIZE=${max_request_size}
       - PROXY_READ_TIMEOUT=${read_timeout:-60000}ms
       - PROXY_CONNECT_TIMEOUT=${connection_timeout:-10000}ms
-     networks:
+      
+    networks:
       - face_network
 
   compreface-core:
