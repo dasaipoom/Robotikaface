@@ -3,6 +3,10 @@ version: '3.4'
 volumes:
   postgres-data:
 
+networks:  # make network
+  face_network:
+    external: true
+
 services:
   compreface-postgres-db:
     image: ${registry}compreface-postgres-db:${POSTGRES_VERSION}
@@ -40,6 +44,8 @@ services:
     image: ${registry}compreface-api:${API_VERSION}
     restart: always
     container_name: "compreface-api"
+    networks:  # set network
+      - face_network
     depends_on:
       - compreface-postgres-db
     environment:
@@ -58,6 +64,8 @@ services:
     image: ${registry}compreface-fe:${FE_VERSION}
     restart: always
     container_name: "compreface-ui"
+    networks:  # set network
+      - face_network
     ports:
       - "8003:80"
     depends_on:
