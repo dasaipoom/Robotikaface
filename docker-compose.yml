@@ -93,3 +93,6 @@ services:
       timeout: 1s
     networks:
       - face-network
+
+networks:
+  face-network:
